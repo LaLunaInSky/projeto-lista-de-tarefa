@@ -63,10 +63,22 @@ body {
             display: flex;
             flex-flow: column;
             justify-content: flex-end;
-            background-color: var(--preto05);
             overflow: hidden;
 
+            & > .registro_AlteraçãoTarefas {
+                height: 100%;
+                padding: 20px;
+                background-color: var(--preto05);
+            }
+
+            & > .menuComTarefasAdicionadas{
+                display: none;
+                height: 100%;
+                background-color: var(--preto02);
+            }
+
             & > aside {
+                font-size: 0.9em;
                 cursor: pointer;
                 text-align: center;
                 padding: 10px;
