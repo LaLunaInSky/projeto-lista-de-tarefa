@@ -20,22 +20,41 @@ barraMenuTarefasAdicionadas.addEventListener("click", ()=>{
 })
 
 const redistribuirIDs = ()=>{
-    [...tarefasAdicionadas.children].map((e, p)=>{
-        e.setAttribute('id', `tarefa${p}`)
-        const divsIcones2 = e.children[2].children
-        divsIcones2[2].addEventListener("click", ()=>{
-            deletarTarefa(e)
+    if (tarefasAdicionadas.children[0].id != 'tarefa0' || tarefasAdicionadas.lastChild.id == '') {
+        [...tarefasAdicionadas.children].map((e, p)=>{
+            e.setAttribute('id', `tarefa${p}`)
+
+            if (p == (listaTarefasAdicionadas.length)) {
+                distribuirEventos(e)
+            }
         })
-    })
+    }
 }
 
-const deletarTarefa = (htmlElemento)=>{
-    const elemento = htmlElemento
-    const index = elemento.id.slice(6)
-    htmlElemento.remove()
-    listaTarefasAdicionadas.splice(index)
+const distribuirEventos = (e)=>{
+    const divIcone1 = e.children[0]
+    divIcone1.addEventListener("click", ()=>{
+        concluirOuDesconcluirTarefa(divIcone1.children[0])
+    })
+    
+    console.log(divIcone1)
+}
 
-    redistribuirIDs()
+const deletarTarefa = (elemento)=>{
+   console.log(elemento)
+}
+
+const concluirOuDesconcluirTarefa = (elemento)=>{
+    const index = elemento.parentElement.parentElement.id.slice(6)
+    if (elemento.title != "concluida") {
+        elemento.title = 'concluida'
+        elemento.children[0].setAttribute('src', 'imagens/icone_concluido.png')
+        listaTarefasAdicionadas[index].concluido = true
+    } else {
+        elemento.setAttribute("title", 'não concluida')
+        elemento.children[0].setAttribute('src', 'imagens/icone_não_concluido.png')
+        listaTarefasAdicionadas[index].concluido = false
+    }
 }
 
 class ModeloTarefa{
