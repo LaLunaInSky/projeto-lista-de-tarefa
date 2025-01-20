@@ -158,6 +158,28 @@ body {
                         border-radius: 10px;
                     }
                 }
+
+                & > div:nth-child(5) {
+                    margin-top: 10px;
+                    display: flex;
+                    justify-content: center;
+
+                    & > input {
+                        cursor: pointer;
+                        padding: 10px;
+                        margin: 10px;
+                        font-weight: bold;
+                        border-radius: 10px;
+                        font-size: 1.5em;
+                        color: white;
+                        background-color: var(--preto02);
+
+                        &:hover {
+                            color: var(--preto02);
+                            background-color: var(--preto05);
+                        }
+                    }
+                }
             }
 
             & > .menuComTarefasAdicionadas{
