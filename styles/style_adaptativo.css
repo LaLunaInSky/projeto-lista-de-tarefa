@@ -66,6 +66,7 @@ body {
             overflow: hidden;
 
             & > .registro_AlteraçãoTarefas {
+                display: none;
                 height: 100%;
                 padding: 15px 20px;
                 background-color: var(--preto05);
@@ -183,10 +184,77 @@ body {
                 }
             }
 
-            & > .menuComTarefasAdicionadas{
-                display: none;
+            & > .menuComTarefasAdicionadas {
+                display: flex;
                 height: 100%;
+                padding: 10px;
                 background-color: var(--preto02);
+                justify-content: center;
+                align-items: center;
+
+                & > h1 {
+                    display: none;
+                    padding: 0px 10px;
+                    color: white;
+                    text-align: center;
+                    font-size: 1.7em;
+                }
+
+                & > div {
+                    display: flex;
+                    overflow: hidden;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 30px;
+                    background-color: var(--preto03);
+
+                    & > article {
+                        cursor: default;
+                        padding: 0px 10px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 100%;
+                        height: 40px;
+                        border: 2px solid white;
+                        border-top: #000000;
+                        border-left: #000000;
+                        border-right: #000000;
+
+                        &:hover {
+                            background-color: var(--preto01);
+                        }
+
+                        & .icone {
+                            cursor: pointer;
+                            width: 30px;
+                            height: 30px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            border-radius: 50%;
+
+                            &:hover {
+                                background-color: var(--preto02);
+                            }
+                        }
+
+                        & > h2 {
+                            color: white;
+                            font-size: 1.3em;
+                        }
+
+                        & > div {
+                            display: flex;
+                        }
+
+                        & img {
+                            margin-top: 3px;
+                            margin-right: 1px;
+                            width: 20px;
+                        }
+                    }
+                }
             }
 
             & > aside {

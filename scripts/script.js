@@ -7,9 +7,9 @@ const btnSalvar = document.querySelector("#btnSalvar")
 let tarefasAdicionadas = []
 
 barraMenuTarefasAdicionadas.addEventListener("click", ()=>{
-    if (menuComTarefasAdicionadas.style.display != "block") {
+    if (menuComTarefasAdicionadas.style.display != "flex") {
         registroAlteraçãoTarefas.style.display = 'none'
-        menuComTarefasAdicionadas.style.display = 'block'
+        menuComTarefasAdicionadas.style.display = 'flex'
     } else {
         registroAlteraçãoTarefas.style.display = 'block'
         menuComTarefasAdicionadas.style.display = 'none'
@@ -79,3 +79,4 @@ btnSalvar.addEventListener("click", ()=>{
 
     console.log(tarefasAdicionadas)
 })
+
