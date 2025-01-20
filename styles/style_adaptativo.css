@@ -101,17 +101,18 @@ body {
 
                     & > div:nth-child(1) {
                         width: 45%;
+                        margin-top: 5px;
                         display: flex;
                         flex-flow: column;
 
                         & > label {
                             font-size: 1.05em;
-                            padding: 3px;
+                            padding: 2px;
                             text-align: center;
                         }
 
                         & > input {
-                            margin: 0px 10px;
+                            margin: 0px 10px 0px;
                             font-size: 1.1em;
                             padding: 2px;
                             text-align: center;
@@ -170,12 +171,12 @@ body {
                         margin: 10px;
                         font-weight: bold;
                         border-radius: 10px;
-                        font-size: 1.5em;
+                        font-size: 1.3em;
                         color: white;
                         background-color: var(--preto02);
 
                         &:hover {
-                            color: var(--preto02);
+                            color: var(--preto01);
                             background-color: var(--preto05);
                         }
                     }

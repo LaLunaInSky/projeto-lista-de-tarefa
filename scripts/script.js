@@ -14,3 +14,10 @@ barraMenuTarefasAdicionadas.addEventListener("click", ()=>{
     }
     
 })
+
+class ModeloTarefa{
+    nome
+    dataDeConclusão
+    dataDeCriação
+    pr
+}
