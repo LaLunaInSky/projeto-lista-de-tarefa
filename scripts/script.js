@@ -117,3 +117,13 @@ btnSalvar.addEventListener("click", ()=>{
 
     console.log(listaTarefasAdicionadas)
 })
+
+//criar tarefa dev teste
+listaTarefasAdicionadas.push(
+    new ModeloTarefa("Tarefa Teste", '2025-01-31', 'Alta', 'Tarefa teste....')
+)
+
+if (listaTarefasAdicionadas.length > 0) {
+    H1menuComTarefasAdicionadas.style.display ='none'
+    tarefasAdicionadas.style.display = 'flex'
+}
