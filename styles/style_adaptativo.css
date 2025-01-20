@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+:root {
+    --preto01: #000000;
+    --preto02: #3C3C3C;
+    --preto03: #5E5E5E;
+    --preto04: #808080;
+    --preto05: #A2A2A2;
+    --preto06: #C3C3C3;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    background-color: var(--preto01);
+}
+
+body {
+    display: none;
+}
+
+@media (min-width:320px)  {
+    body {
+        display: block;
+        height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    main {
+        height: 100%;
+        background-color: var(--preto02);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .caixaPrincipal {
+        width: 450px;
+        height: 600px;
+        margin: 10px;
+        border-radius: 30px;
+        background-color: white;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+
+        & > h1 {
+            cursor: default;
+            text-align: center;
+            padding: 15px 15px 5px;
+        }
+
+        & > section {
+            width: 95%;
+            height: 100%;
+            margin-bottom: 10px;
+            border-radius: 30px;
+            display: flex;
+            flex-flow: column;
+            justify-content: flex-end;
+            background-color: var(--preto05);
+            overflow: hidden;
+
+            & > aside {
+                cursor: pointer;
+                text-align: center;
+                padding: 10px;
+                color: white;
+                background-color: var(--preto02);
+                transition: padding 200ms ease-in-out;
+
+                &:hover {
+                    background-color: var(--preto03);
+                    padding: 15px;
+                    transition: padding 200ms ease-in-out;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width:480px)  { /* smartphones, Android phones, landscape iPhone */ }
+@media (min-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ }
+@media (min-width:801px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+@media (min-width:1281px) { /* hi-res laptops and desktops */ }
