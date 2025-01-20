@@ -19,16 +19,23 @@ barraMenuTarefasAdicionadas.addEventListener("click", ()=>{
     
 })
 
+const redistribuirIDs = ()=>{
+    [...tarefasAdicionadas.children].map((e, p)=>{
+        e.setAttribute('id', `tarefa${p}`)
+        const divsIcones2 = e.children[2].children
+        divsIcones2[2].addEventListener("click", ()=>{
+            deletarTarefa(e)
+        })
+    })
+}
+
 const deletarTarefa = (htmlElemento)=>{
     const elemento = htmlElemento
     const index = elemento.id.slice(6)
     htmlElemento.remove()
     listaTarefasAdicionadas.splice(index)
-}
 
-const visualizarInfoTarefa = (htmlElemento)=>{
-    const elemento = htmlElemento
-    const index = elemento.id.slice(6)
+    redistribuirIDs()
 }
 
 class ModeloTarefa{
@@ -38,7 +45,7 @@ class ModeloTarefa{
     prioridade
     descrição
     concluido
-    objHtml
+    cor
 
     constructor(nome, dataDeConclusão, prioridade, descrição){
         this.nome = nome
@@ -47,8 +54,8 @@ class ModeloTarefa{
         this.prioridade = prioridade
         this.descrição = descrição
         this.concluido = false
-
-        criarDesignerTarefa(this.nome)
+        this.obterCor()
+        criarDesignerTarefa(this.nome, this.cor)
     }
 
     obterDataAtual = ()=>{
@@ -56,11 +63,20 @@ class ModeloTarefa{
         const dataAtual = `${data.getFullYear()}-${(data.getMonth()+1 > 10) ? (data.getMonth()+1) : "0" + (data.getMonth()+1)}-${data.getDate()}`
         return dataAtual
     }
+
+    obterCor = ()=>{
+        if (this.prioridade == "Baixa") {
+            this.cor = "#013f01"
+        } else if (this.prioridade == 'Média') {
+            this.cor = "#a0a001"
+        } else if (this.prioridade == "Alta") {
+            this.cor = "#850303"
+        }
+    }
 }
 
-const criarDesignerTarefa = (nome)=>{
+const criarDesignerTarefa = (nome, cor)=>{
     const novaTarefa = document.createElement("article")
-    novaTarefa.setAttribute('id', `tarefa${tarefasAdicionadas.children.length}`)
     novaTarefa.innerHTML = `<div class="icone conclusão">
                                 <abbr title="não concluida">
                                     <img src="imagens/icone_não_concluido.png" alt="icone conclusão">
@@ -78,13 +94,22 @@ const criarDesignerTarefa = (nome)=>{
                                         <img src="imagens/icone_editar.png" alt="icone editar">
                                     </abbr>
                                 </div>
-                                <div onclick="deletarTarefa(${novaTarefa.id})" class="icone">
+                                <div class="icone">
                                     <abbr title="deletar tarefa">
                                         <img src="imagens/icone_deletar.png" alt="icone_deletar">
                                     </abbr>
                                 </div>
                             </div>`
+    novaTarefa.addEventListener("mouseover", ()=>{
+        novaTarefa.style.backgroundColor = cor
+    })
+
+    novaTarefa.addEventListener("mouseout", ()=>{
+        novaTarefa.style.backgroundColor = "transparent"
+    })
+
     tarefasAdicionadas.appendChild(novaTarefa)
+    redistribuirIDs()
 }
 
 const verificarInputs = ()=>{
@@ -134,7 +159,10 @@ listaTarefasAdicionadas.push(
     new ModeloTarefa("Tarefa Teste", '2025-01-31', 'Alta', 'Tarefa teste....')
 )
 listaTarefasAdicionadas.push(
-    new ModeloTarefa("Tarefa Teste", '2025-01-31', 'Alta', 'Tarefa teste....')
+    new ModeloTarefa("Tarefa Teste", '2025-01-31', 'Média', 'Tarefa teste....')
+)
+listaTarefasAdicionadas.push(
+    new ModeloTarefa("Tarefa Teste", '2025-01-31', 'Baixa', 'Tarefa teste....')
 )
 if (listaTarefasAdicionadas.length > 0) {
     H1menuComTarefasAdicionadas.style.display ='none'
