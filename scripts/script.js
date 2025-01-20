@@ -19,6 +19,18 @@ barraMenuTarefasAdicionadas.addEventListener("click", ()=>{
     
 })
 
+const deletarTarefa = (htmlElemento)=>{
+    const elemento = htmlElemento
+    const index = elemento.id.slice(6)
+    htmlElemento.remove()
+    listaTarefasAdicionadas.splice(index)
+}
+
+const visualizarInfoTarefa = (htmlElemento)=>{
+    const elemento = htmlElemento
+    const index = elemento.id.slice(6)
+}
+
 class ModeloTarefa{
     nome
     dataDeConclusão
@@ -26,6 +38,7 @@ class ModeloTarefa{
     prioridade
     descrição
     concluido
+    objHtml
 
     constructor(nome, dataDeConclusão, prioridade, descrição){
         this.nome = nome
@@ -43,15 +56,11 @@ class ModeloTarefa{
         const dataAtual = `${data.getFullYear()}-${(data.getMonth()+1 > 10) ? (data.getMonth()+1) : "0" + (data.getMonth()+1)}-${data.getDate()}`
         return dataAtual
     }
-
-    info = ()=>{
-        console.log(`nome da tarefa: ${this.nome}\ndata de conclusão: ${this.dataDeConclusão}\ndata de criação: ${this.dataDeCriação}\nprioridade: ${this.prioridade}\ndescrição: ${this.descrição}\nconcluido: ${this.concluido ? "Sim" : 'Não'}\n`)
-    }
 }
 
 const criarDesignerTarefa = (nome)=>{
     const novaTarefa = document.createElement("article")
-    novaTarefa.setAttribute('id', `tarefa${tarefasAdicionadas.children.length+1 > 10 ? (tarefasAdicionadas.children.length+1) : "0" + (tarefasAdicionadas.children.length+1)}`)
+    novaTarefa.setAttribute('id', `tarefa${tarefasAdicionadas.children.length}`)
     novaTarefa.innerHTML = `<div class="icone conclusão">
                                 <abbr title="não concluida">
                                     <img src="imagens/icone_não_concluido.png" alt="icone conclusão">
@@ -69,7 +78,7 @@ const criarDesignerTarefa = (nome)=>{
                                         <img src="imagens/icone_editar.png" alt="icone editar">
                                     </abbr>
                                 </div>
-                                <div class="icone">
+                                <div onclick="deletarTarefa(${novaTarefa.id})" class="icone">
                                     <abbr title="deletar tarefa">
                                         <img src="imagens/icone_deletar.png" alt="icone_deletar">
                                     </abbr>
@@ -118,11 +127,15 @@ btnSalvar.addEventListener("click", ()=>{
     console.log(listaTarefasAdicionadas)
 })
 
+
+
 //criar tarefa dev teste
 listaTarefasAdicionadas.push(
     new ModeloTarefa("Tarefa Teste", '2025-01-31', 'Alta', 'Tarefa teste....')
 )
-
+listaTarefasAdicionadas.push(
+    new ModeloTarefa("Tarefa Teste", '2025-01-31', 'Alta', 'Tarefa teste....')
+)
 if (listaTarefasAdicionadas.length > 0) {
     H1menuComTarefasAdicionadas.style.display ='none'
     tarefasAdicionadas.style.display = 'flex'
