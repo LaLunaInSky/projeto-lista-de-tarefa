@@ -77,7 +77,6 @@ body {
                 }
 
                 & > div:nth-child(2) {
-                    background-color: blue;
                     display: flex;
                     flex-flow: column;
 
@@ -95,24 +94,49 @@ body {
                 }
 
                 & > div:nth-child(3) {
-                    background-color: red;
                     margin-top: 10px;
-                    width: 45%;
                     display: flex;
-                    flex-flow: column;
+                    flex-flow: row nowrap;
+                    justify-content: space-between;
 
-                    & > label {
-                        font-size: 1.05em;
-                        padding: 3px;
-                        text-align: center;
+                    & > div:nth-child(1) {
+                        width: 45%;
+                        display: flex;
+                        flex-flow: column;
+
+                        & > label {
+                            font-size: 1.05em;
+                            padding: 3px;
+                            text-align: center;
+                        }
+
+                        & > input {
+                            margin: 0px 10px;
+                            font-size: 1.1em;
+                            padding: 2px;
+                            text-align: center;
+                            border-radius: 10px;
+                        }
                     }
 
-                    & > input {
-                        margin: 0px 10px;
-                        font-size: 1.1em;
-                        padding: 2px;
-                        text-align: center;
-                        border-radius: 10px;
+                    & > div:nth-child(2) {
+                        width: 45%;
+                        display: flex;
+                        flex-flow: column;
+
+                        & > label {
+                            padding: 10px 3px 5px;
+                            font-size: 1.2em;
+                            text-align: center;
+                        }
+
+                        & > select {
+                            margin-top: 5px;
+                            border-radius: 10px;
+                            padding: 3.5px;
+                            text-align: center;
+                            font-size: 1.05em;
+                        }
                     }
                 }
             }
