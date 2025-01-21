@@ -290,11 +290,120 @@ body {
                     }
 
                     & > .editar{
-                        display: none;
+                        background-color: var(--preto04);
+                        display: flex;
+                        flex-flow: column;
+                        align-items: center;
+
+                        & > h2 {
+                            margin-top: 5px;
+                            margin-bottom: 5px;
+                            font-size: 1.4em;
+                        }
+
+                        & > div:nth-child(2) {
+                            margin-top: 5px;
+                            width: 90%;
+                            display: flex;
+                            flex-flow: column;
+
+                            & > label {
+                                font-size: 1.1em;
+                                margin-left: 10px;
+                            }
+
+                            & > input {
+                                font-size: 1.1em;
+                                border-radius: 10px;
+                                padding: 2px 5px;
+                            }
+                        }
+
+                        & > div:nth-child(3) {
+                            margin-top: 15px;
+                            width: 90%;
+                            display: flex;
+                            justify-content: space-between;
+                        
+                            & > div {
+                                width: 48%;
+                                display: flex;
+                                flex-flow: column;
+                                justify-content: center;
+                                align-items: center;
+                            }
+
+                            & > div:nth-child(1) {
+                                & > label {
+                                    font-size: 1.1em;
+                                    text-align: center;
+                                    margin-bottom: 5px;
+                                }
+
+                                & > input {
+                                    width: 80%;
+                                    text-align: center;
+                                    padding: 2px;
+                                    border-radius: 5px;
+                                }
+
+                            }
+
+                            & > div:nth-child(2) {
+                                & > label {
+                                    font-size: 1.4em;
+                                    margin-bottom: 5px;
+                                }
+
+                                & > select {
+                                    width: 80%;
+                                    font-size: 1em;
+                                    text-align: center;
+                                    border-radius: 5px;
+                                    padding: 2px;
+                                }
+                            }
+                        }
+
+                        & > div:nth-child(4) {
+                            margin-top: 10px;
+                            display: flex;
+                            flex-flow: column;
+                            width: 90%;
+
+                            & > label {
+                                font-size: 1.2em;
+                                margin-left: 10px;
+                                padding: 5px 0px;
+                            }
+
+                            & > textarea {
+                                font-size: 1.1em;
+                                padding: 5px;
+                                border-radius: 10px;
+                            }
+                        }
+
+                        & > div:nth-child(5) {
+                            margin-top: 20px;
+
+                            & > input {
+                                cursor: pointer;
+                                font-size: 1.5em;
+                                padding: 5px;
+                                border-radius: 10px;
+                                background-color: var(--preto06);
+                            
+                                &:hover {
+                                    color: white;
+                                    background-color: var(--preto01);
+                                }
+                            }
+                        }
                     }
 
                     & > .info {
-                        display: flex;
+                        display: none; /*deafault flex*/
                         flex-flow: column;
                         justify-content: flex-start;
                         align-items: center;
@@ -386,7 +495,7 @@ body {
                             border-radius: 10px;
                             cursor: default;
                             margin-top: 30px;
-                            width: 90%;
+                            width: 85%;
 
                             & > h2 {
                                 font-size: 1em;

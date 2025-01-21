@@ -52,8 +52,6 @@ const distribuirEventos = (e)=>{
     divsIcone2.children[1].addEventListener("click", ()=>{
         abrirMenuinfoEditarTarefa(divsIcone2.children[1])
     })
-
-    console.log(divsIcone2.children[1])
     
 }
 
@@ -65,17 +63,58 @@ const abrirMenuinfoEditarTarefa = (elemento)=>{
     infoEditarTarefa.style.display = 'flex'
     tarefasAdicionadas.style.display = 'none'
 
-    console.log(listaTarefasAdicionadas[index].info())
-
     //editar tarefa
     //visualizar tarefa
 
     if (elemento.children[0].title == "visualizar tarefa") {
         infoMenu.style.display = 'flex'
-        editarMenu.style.display = 'none'    
+        editarMenu.style.display = 'none'
+        atribuirInfosDaTarefa(listaTarefasAdicionadas[index].info()) 
+    } else if (elemento.children[0].title == "editar tarefa") {
+        infoMenu.style.display = 'none'
+        editarMenu.style.display = 'flex'
+        atribuirInfosAoEditar(listaTarefasAdicionadas[index].info())
     }
     
     //console.log(elemento.parentElement.parentElement)
+}
+
+const reatribuirNovasInfosATarefa = (arrayNovo, arrayVelho)=>{
+    console.log(arrayNovo)
+    console.log(arrayVelho)
+}
+
+const atribuirInfosAoEditar = (array)=>{
+    const tarefa = array
+    const menuEditar = document.querySelector(".editar")
+    const inputNome = menuEditar.children[1].children[1]
+    const inputData = menuEditar.children[2].children[0].children[1]
+    const inputPrioridade = menuEditar.children[2].children[1].children[1]
+    const inputDescrição = menuEditar.children[3].children[1]
+    const inputBtn = menuEditar.children[4].children[0]
+
+    inputNome.value = tarefa[0]
+    inputData.value = tarefa[1]
+    inputPrioridade.value = tarefa[3]
+    inputDescrição.value = tarefa[4]
+
+    inputBtn.addEventListener("click", ()=>{
+        let novaTarefa = [...tarefa]
+
+        novaTarefa[3] = inputPrioridade.value
+        
+        if (inputNome.value != "" && inputData.value != "" && inputDescrição.value != "") {
+            novaTarefa[0] = inputNome.value
+            novaTarefa[1] = inputData.value
+            novaTarefa[4] = inputDescrição.value
+            
+            alert("Salvo com sucesso!")
+            reatribuirNovasInfosATarefa(novaTarefa, tarefa)
+        } else {
+            alert("Está faltando preencher informações antes de salvar!")
+        }
+    })
+
 }
 
 const atribuirInfosDaTarefa = (array)=>{
@@ -226,6 +265,7 @@ btnSalvar.addEventListener("click", ()=>{
     if (infoTarefa == undefined) {
         alert('Informações sobre a nova tarefa incompleta!')
     } else {
+        alert("Salvo com sucesso!")
         listaTarefasAdicionadas.push(
             new ModeloTarefa(infoTarefa[0], infoTarefa[1], infoTarefa[2], infoTarefa[3])
         )
@@ -259,4 +299,4 @@ listaTarefasAdicionadas.push(
 //     tarefasAdicionadas.style.display = 'flex'
 // }
 
-atribuirInfosDaTarefa(listaTarefasAdicionadas[0].info())
+atribuirInfosAoEditar(listaTarefasAdicionadas[0].info())
