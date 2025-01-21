@@ -302,7 +302,7 @@ body {
                         color: white;
 
                         & > h2 {
-                            color: var(--preto01);
+                            color: white;
                             cursor: default;
                             margin-top: 20px;
                             font-size: 1em;
@@ -316,13 +316,13 @@ body {
                         }
 
                         & > div h2 {
-                            color: var(--preto01);
+                            color: white;
                             font-weight: bolder;
                         }
 
                         & > .datas {
                             margin-top: 30px;
-                            width: 80%;
+                            width: 95%;
                             display: flex;
                             justify-content: space-around;
 
@@ -350,7 +350,7 @@ body {
                         & > .prioridadeEConclusão {
                             cursor: default;
                             margin-top: 35px;
-                            width: 65%;
+                            width: 75%;
                             display: flex;
                             justify-content: space-between;
 
