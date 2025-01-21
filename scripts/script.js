@@ -12,24 +12,40 @@ let listaTarefasAdicionadas = []
 
 barraMenuTarefasAdicionadas.addEventListener("click", ()=>{
     if (menuComTarefasAdicionadas.style.display != "flex") {
+        //abrir
         registroTarefas.style.display = 'none'
         menuComTarefasAdicionadas.style.display = 'flex'
+
+        if (listaTarefasAdicionadas.length > 0) {
+            H1menuComTarefasAdicionadas.style.display ='none'
+            tarefasAdicionadas.style.display = 'flex'
+        } else {
+            H1menuComTarefasAdicionadas.style.display ='block'
+            tarefasAdicionadas.style.display = 'none'
+        }
+
     } else {
+        //fechar
         registroTarefas.style.display = 'block'
         menuComTarefasAdicionadas.style.display = 'none'
+        infoEditarTarefa.style.display = 'none'
     }
-    
 })
 
 const redistribuirIDs = ()=>{
-    if (tarefasAdicionadas.children[0].id != 'tarefa0' || tarefasAdicionadas.lastChild.id == '') {
-        [...tarefasAdicionadas.children].map((e, p)=>{
-            e.setAttribute('id', `tarefa${p}`)
+    try {
+        if (tarefasAdicionadas.children[0].id != 'tarefa0' || tarefasAdicionadas.lastChild.id == '') {
+            [...tarefasAdicionadas.children].map((e, p)=>{
+                e.setAttribute('id', `tarefa${p}`)
 
-            if (p == (listaTarefasAdicionadas.length)) {
-                distribuirEventos(e)
-            }
-        })
+                if (p == (listaTarefasAdicionadas.length)) {
+                    distribuirEventos(e)
+                }
+            })
+        }
+    } catch {
+        H1menuComTarefasAdicionadas.style.display ='block'
+        tarefasAdicionadas.style.display = 'none'
     }
 }
 
@@ -73,18 +89,33 @@ const abrirMenuinfoEditarTarefa = (elemento)=>{
     } else if (elemento.children[0].title == "editar tarefa") {
         infoMenu.style.display = 'none'
         editarMenu.style.display = 'flex'
-        atribuirInfosAoEditar(listaTarefasAdicionadas[index].info())
+        atribuirInfosAoEditar(listaTarefasAdicionadas[index].info(), index)
     }
     
     //console.log(elemento.parentElement.parentElement)
 }
 
-const reatribuirNovasInfosATarefa = (arrayNovo, arrayVelho)=>{
-    console.log(arrayNovo)
-    console.log(arrayVelho)
+const reatribuirNovasInfosATarefa = (array, index)=>{listaTarefasAdicionadas[index].nome = array[0]
+    listaTarefasAdicionadas[index].dataDeConclusão = array[1]
+    listaTarefasAdicionadas[index].dataDeCriação = array[2]
+    listaTarefasAdicionadas[index].prioridade = array[3]
+    listaTarefasAdicionadas[index].descrição = array[4]
+    listaTarefasAdicionadas[index].concluido = array[5]
+    listaTarefasAdicionadas[index].cor = array[6]
+    listaTarefasAdicionadas[index].obterCor()
+
+    const articleDestaTarefa = document.querySelector(`#tarefa${index}`)
+    articleDestaTarefa.children[1].innerText = listaTarefasAdicionadas[index].nome
+    articleDestaTarefa.addEventListener("mouseover", ()=>{
+        articleDestaTarefa.style.backgroundColor = listaTarefasAdicionadas[index].cor
+    })
+
+    articleDestaTarefa.addEventListener("mouseout", ()=>{
+        articleDestaTarefa.style.backgroundColor = "transparent"
+    })
 }
 
-const atribuirInfosAoEditar = (array)=>{
+const atribuirInfosAoEditar = (array, index)=>{
     const tarefa = array
     const menuEditar = document.querySelector(".editar")
     const inputNome = menuEditar.children[1].children[1]
@@ -109,7 +140,7 @@ const atribuirInfosAoEditar = (array)=>{
             novaTarefa[4] = inputDescrição.value
             
             alert("Salvo com sucesso!")
-            reatribuirNovasInfosATarefa(novaTarefa, tarefa)
+            reatribuirNovasInfosATarefa(novaTarefa, index)
         } else {
             alert("Está faltando preencher informações antes de salvar!")
         }
@@ -251,7 +282,7 @@ const verificarInputs = ()=>{
         
         nomeTarefa.value = ''
         dataDeConclusão.value = ''
-        nivelPrioridade.value = ''
+        nivelPrioridade.value = 'Baixa'
         descriçãoTarefa.value = ''
         
         return listaDeInfos
@@ -265,38 +296,23 @@ btnSalvar.addEventListener("click", ()=>{
     if (infoTarefa == undefined) {
         alert('Informações sobre a nova tarefa incompleta!')
     } else {
-        alert("Salvo com sucesso!")
-        listaTarefasAdicionadas.push(
-            new ModeloTarefa(infoTarefa[0], infoTarefa[1], infoTarefa[2], infoTarefa[3])
-        )
+        if (listaTarefasAdicionadas.length < 11) {
+            alert("Salvo com sucesso!")
+            listaTarefasAdicionadas.push(
+                new ModeloTarefa(infoTarefa[0], infoTarefa[1], infoTarefa[2], infoTarefa[3])
+            )
+        } else {
+            alert("Limite de tarefas atingido!!!")
+        }
     }
 
     if (listaTarefasAdicionadas.length > 0) {
         H1menuComTarefasAdicionadas.style.display ='none'
         tarefasAdicionadas.style.display = 'flex'
     }
-
-    console.log(listaTarefasAdicionadas)
 })
 
 btnFechar.addEventListener("click", ()=>{
     infoEditarTarefa.style.display = 'none'
     tarefasAdicionadas.style.display = 'flex'
 })
-
-//criar tarefa dev teste
-listaTarefasAdicionadas.push(
-    new ModeloTarefa("Tarefa Teste", '2025-01-31', 'Alta', 'Tarefa teste....')
-)
-listaTarefasAdicionadas.push(
-    new ModeloTarefa("Tarefa Teste", '2025-01-31', 'Média', 'Tarefa teste....')
-)
-listaTarefasAdicionadas.push(
-    new ModeloTarefa("Tarefa Teste", '2025-01-31', 'Baixa', 'Tarefa teste....')
-)
-// if (listaTarefasAdicionadas.length > 0) {
-//     H1menuComTarefasAdicionadas.style.display ='none'
-//     tarefasAdicionadas.style.display = 'flex'
-// }
-
-atribuirInfosAoEditar(listaTarefasAdicionadas[0].info())

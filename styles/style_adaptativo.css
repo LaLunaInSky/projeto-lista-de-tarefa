@@ -66,12 +66,13 @@ body {
             overflow: hidden;
 
             & > .registroTarefas {
-                display: none;
+                display: block; /*default block*/
                 height: 100%;
                 padding: 15px 20px;
                 background-color: var(--preto05);
 
                 & > h2 {
+                    cursor: default;
                     text-align: center;
                     margin-bottom: 10px;
                     font-size: 1.4em;
@@ -185,7 +186,7 @@ body {
             }
 
             & > .menuComTarefasAdicionadas {
-                display: flex;
+                display: none;
                 height: 100%;
                 padding: 10px;
                 background-color: var(--preto02);
@@ -193,7 +194,7 @@ body {
                 align-items: center;
 
                 & > h1 {
-                    display: none; /*default block*/
+                    display: block; /*default block*/
                     padding: 0px 10px;
                     color: white;
                     text-align: center;
@@ -257,7 +258,7 @@ body {
                 }
 
                 & > .info_EditarTarefa{
-                    display: flex; /*default none*/
+                    display: none; /*default none*/
                     flex-flow: column;
                     overflow: hidden;
                     width: 100%;
