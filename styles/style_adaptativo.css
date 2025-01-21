@@ -65,7 +65,7 @@ body {
             justify-content: flex-end;
             overflow: hidden;
 
-            & > .registro_AlteraçãoTarefas {
+            & > .registroTarefas {
                 display: none;
                 height: 100%;
                 padding: 15px 20px;
@@ -193,7 +193,7 @@ body {
                 align-items: center;
 
                 & > h1 {
-                    display: block;
+                    display: none; /*default block*/
                     padding: 0px 10px;
                     color: white;
                     text-align: center;
@@ -252,6 +252,89 @@ body {
                             margin-top: 3px;
                             margin-right: 1px;
                             width: 20px;
+                        }
+                    }
+                }
+
+                & > .info_EditarTarefa{
+                    display: flex; /*default none*/
+                    flex-flow: column;
+                    overflow: hidden;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 20px;
+                    background-color: var(--preto03);
+
+                    & > section {
+                        height: 40px;
+                        display: flex;
+                        justify-content: right;
+                        align-items: center;
+
+                        & > img {
+                            cursor: pointer;
+                            width: 30px;
+                            height: 30px;
+                            margin-right: 5px;
+                            border-radius: 50%;
+
+                            &:hover {
+                                background-color: #000000;
+                            }
+                        }
+                    }
+
+                    & > div {
+                        display: block;
+                        height: 100%;
+                    }
+
+                    & > .editar{
+                        display: none;
+                    }
+
+                    & > .info {
+                        background-color: red;
+                        display: flex;
+                        flex-flow: column;
+                        justify-content: flex-start;
+                        align-items: center;
+                        color: white;
+
+                        & > h2 {
+                            cursor: default;
+                            margin-top: 10px;
+                            font-size: 1em;
+                        }
+
+                        & > h3 {
+                            cursor: default;
+                            margin-top: 3px;
+                            font-weight: bold;
+                            font-size: 1.4em;
+                        }
+
+                        & > .datas {
+                            margin-top: 10px;
+                            width: 90%;
+                            display: flex;
+                            justify-content: space-between;
+
+                            & > div {
+                                cursor: default;
+                                display: flex;
+                                flex-flow: column;
+                                justify-content: center;
+                                align-items: center;
+
+                                & > h2 {
+                                    font-size: 0.85em;
+                                }
+
+                                & > h3 {
+                                    font-size: 0.9em;
+                                }
+                            }
                         }
                     }
                 }

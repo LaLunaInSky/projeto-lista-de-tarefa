@@ -1,19 +1,21 @@
 "use strict"
 
 const barraMenuTarefasAdicionadas = document.querySelector("aside")
-const registroAlteraçãoTarefas = document.querySelector(".registro_AlteraçãoTarefas")
+const registroTarefas = document.querySelector(".registroTarefas")
 const menuComTarefasAdicionadas = document.querySelector(".menuComTarefasAdicionadas")
 const H1menuComTarefasAdicionadas = document.querySelector(".menuComTarefasAdicionadas>h1")
 const tarefasAdicionadas = document.querySelector(".tarefasAdicionadas")
 const btnSalvar = document.querySelector("#btnSalvar")
+const btnFechar = document.querySelector(".info_EditarTarefa>section>img")
+const infoEditarTarefa = document.querySelector(".info_EditarTarefa")
 let listaTarefasAdicionadas = []
 
 barraMenuTarefasAdicionadas.addEventListener("click", ()=>{
     if (menuComTarefasAdicionadas.style.display != "flex") {
-        registroAlteraçãoTarefas.style.display = 'none'
+        registroTarefas.style.display = 'none'
         menuComTarefasAdicionadas.style.display = 'flex'
     } else {
-        registroAlteraçãoTarefas.style.display = 'block'
+        registroTarefas.style.display = 'block'
         menuComTarefasAdicionadas.style.display = 'none'
     }
     
@@ -33,15 +35,59 @@ const redistribuirIDs = ()=>{
 
 const distribuirEventos = (e)=>{
     const divIcone1 = e.children[0]
+    const divsIcone2 = e.children[2]
+
     divIcone1.addEventListener("click", ()=>{
         concluirOuDesconcluirTarefa(divIcone1.children[0])
     })
+
+    divsIcone2.children[2].addEventListener("click", ()=>{
+        deletarTarefa(divsIcone2.children[2])
+    })
+
+    divsIcone2.children[0].addEventListener("click", ()=>{
+        abrirMenuinfoEditarTarefa(divsIcone2.children[0])
+    })
+
+    divsIcone2.children[1].addEventListener("click", ()=>{
+        abrirMenuinfoEditarTarefa(divsIcone2.children[1])
+    })
+
+    console.log(divsIcone2.children[1])
     
-    console.log(divIcone1)
+}
+
+const abrirMenuinfoEditarTarefa = (elemento)=>{
+    const index = elemento.parentElement.parentElement.id.slice(6)
+
+    infoEditarTarefa.style.display = 'flex'
+    tarefasAdicionadas.style.display = 'none'
+
+    console.log(listaTarefasAdicionadas[index].info())
+
+    //editar tarefa
+    //visualizar tarefa
+    
+    //console.log(elemento.parentElement.parentElement)
+}
+
+const atribuirInfosDaTarefa = (array)=>{
+    const tarefa = array
+    const infoMenu = document.querySelector(".info")
+    const datas = document.querySelector(".datas")
+
+    infoMenu.children[1].innerText = tarefa[0]
+    datas.children[0].children[1].innerText = tarefa[1]
+    datas.children[1].children[1].innerText = tarefa[2]
+
+    console.log(tarefa)
 }
 
 const deletarTarefa = (elemento)=>{
-   console.log(elemento)
+    const index = elemento.parentElement.parentElement.id.slice(6)
+    elemento.parentElement.parentElement.remove()
+    listaTarefasAdicionadas.splice(index)
+    redistribuirIDs()
 }
 
 const concluirOuDesconcluirTarefa = (elemento)=>{
@@ -91,6 +137,14 @@ class ModeloTarefa{
         } else if (this.prioridade == "Alta") {
             this.cor = "#850303"
         }
+    }
+
+    info = ()=>{
+        const atributos = [
+            this.nome, this.dataDeConclusão, this.dataDeCriação, this.prioridade, this.descrição, this.concluido
+        ]
+
+        return atributos
     }
 }
 
@@ -171,7 +225,10 @@ btnSalvar.addEventListener("click", ()=>{
     console.log(listaTarefasAdicionadas)
 })
 
-
+btnFechar.addEventListener("click", ()=>{
+    infoEditarTarefa.style.display = 'none'
+    tarefasAdicionadas.style.display = 'flex'
+})
 
 //criar tarefa dev teste
 listaTarefasAdicionadas.push(
@@ -183,7 +240,9 @@ listaTarefasAdicionadas.push(
 listaTarefasAdicionadas.push(
     new ModeloTarefa("Tarefa Teste", '2025-01-31', 'Baixa', 'Tarefa teste....')
 )
-if (listaTarefasAdicionadas.length > 0) {
-    H1menuComTarefasAdicionadas.style.display ='none'
-    tarefasAdicionadas.style.display = 'flex'
-}
+// if (listaTarefasAdicionadas.length > 0) {
+//     H1menuComTarefasAdicionadas.style.display ='none'
+//     tarefasAdicionadas.style.display = 'flex'
+// }
+
+atribuirInfosDaTarefa(listaTarefasAdicionadas[0].info())
