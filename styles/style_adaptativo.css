@@ -294,16 +294,17 @@ body {
                     }
 
                     & > .info {
-                        background-color: red;
                         display: flex;
                         flex-flow: column;
                         justify-content: flex-start;
                         align-items: center;
+                        background-color: var(--preto04);
                         color: white;
 
                         & > h2 {
+                            color: var(--preto01);
                             cursor: default;
-                            margin-top: 10px;
+                            margin-top: 20px;
                             font-size: 1em;
                         }
 
@@ -314,13 +315,22 @@ body {
                             font-size: 1.4em;
                         }
 
+                        & > div h2 {
+                            color: var(--preto01);
+                            font-weight: bolder;
+                        }
+
                         & > .datas {
-                            margin-top: 10px;
-                            width: 90%;
+                            margin-top: 30px;
+                            width: 80%;
                             display: flex;
-                            justify-content: space-between;
+                            justify-content: space-around;
 
                             & > div {
+                                background-color: var(--preto03);
+                                box-shadow: 0px 0px 5px 2px var(--preto06);
+                                padding: 5px;
+                                border-radius: 10px;
                                 cursor: default;
                                 display: flex;
                                 flex-flow: column;
@@ -334,6 +344,56 @@ body {
                                 & > h3 {
                                     font-size: 0.9em;
                                 }
+                            }
+                        }
+
+                        & > .prioridadeEConclusão {
+                            cursor: default;
+                            margin-top: 35px;
+                            width: 65%;
+                            display: flex;
+                            justify-content: space-between;
+
+                            & > div {
+                                background-color: var(--preto03);
+                                box-shadow: 0px 0px 5px 2px var(--preto06);
+                                padding: 10px;
+                                border-radius: 10px;
+                                display: flex;
+                                flex-flow: column;
+                                align-items: center;
+
+                                & > h2 {
+                                    font-size: 0.9em;
+                                }
+
+                                & > h3 {
+                                    margin-top: 4px;
+                                    font-size: 1em;
+                                }
+                            }
+
+                            & > div:nth-child(1) > h3 {
+                                color: black;
+                            }
+                        }
+
+                        & > .descriçãoT {
+                            background-color: var(--preto03);
+                            box-shadow: 0px 0px 5px 2px var(--preto06);
+                            padding: 10px;
+                            border-radius: 10px;
+                            cursor: default;
+                            margin-top: 30px;
+                            width: 90%;
+
+                            & > h2 {
+                                font-size: 1em;
+                            }
+
+                            & > p {
+                                margin-top: 10px;
+                                font-size: 1em;
                             }
                         }
                     }

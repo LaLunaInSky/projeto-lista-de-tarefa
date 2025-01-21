@@ -59,6 +59,8 @@ const distribuirEventos = (e)=>{
 
 const abrirMenuinfoEditarTarefa = (elemento)=>{
     const index = elemento.parentElement.parentElement.id.slice(6)
+    const infoMenu = document.querySelector(".info")
+    const editarMenu = document.querySelector(".editar")
 
     infoEditarTarefa.style.display = 'flex'
     tarefasAdicionadas.style.display = 'none'
@@ -67,6 +69,11 @@ const abrirMenuinfoEditarTarefa = (elemento)=>{
 
     //editar tarefa
     //visualizar tarefa
+
+    if (elemento.children[0].title == "visualizar tarefa") {
+        infoMenu.style.display = 'flex'
+        editarMenu.style.display = 'none'    
+    }
     
     //console.log(elemento.parentElement.parentElement)
 }
@@ -75,12 +82,19 @@ const atribuirInfosDaTarefa = (array)=>{
     const tarefa = array
     const infoMenu = document.querySelector(".info")
     const datas = document.querySelector(".datas")
+    const prioridadeEConclusão = document.querySelector(".prioridadeEConclusão")
+    const descriçãoT = document.querySelector(".descriçãoT")
 
     infoMenu.children[1].innerText = tarefa[0]
     datas.children[0].children[1].innerText = tarefa[1]
     datas.children[1].children[1].innerText = tarefa[2]
 
-    console.log(tarefa)
+    prioridadeEConclusão.children[0].children[1].innerText = tarefa[3]
+    prioridadeEConclusão.children[0].children[1].style.color = tarefa[6]
+
+    prioridadeEConclusão.children[1].children[1].innerText = tarefa[5] ? "Sim" : "Não"
+    
+    descriçãoT.children[1].innerText = tarefa[4]
 }
 
 const deletarTarefa = (elemento)=>{
@@ -141,7 +155,7 @@ class ModeloTarefa{
 
     info = ()=>{
         const atributos = [
-            this.nome, this.dataDeConclusão, this.dataDeCriação, this.prioridade, this.descrição, this.concluido
+            this.nome, this.dataDeConclusão, this.dataDeCriação, this.prioridade, this.descrição, this.concluido, this.cor
         ]
 
         return atributos
